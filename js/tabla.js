@@ -170,7 +170,7 @@ Number.prototype.formato = function (Formato)
         /* JVELASQUEZ: 17/09/2013 - Resultado inicia con punto y si el valor no
         tiene punto decimal todos los dígitos decimales de resultado serán 0*/
         resultado = ".";
-        for (var i = IndiceDecimal+1; i < Formato.length; i++)
+        for (var i = IndiceDecimal + 1; i < Formato.length; i++)
         {
             var digito = Indice != -1 ? val.toString().charAt(Indice + (i - IndiceDecimal)) : "0";
 
@@ -197,7 +197,8 @@ Number.prototype.formato = function (Formato)
     }
 
     /* JVELASQUEZ: 17/09/2013 - Si el valor no tiene punto decimal todos los dígitos son enteros.*/
-    if (Indice == -1) {
+    if (Indice == -1)
+    {
         Indice = val.toString().length;
     }
 
@@ -311,14 +312,16 @@ $.fn.tabla = function (MetodoWeb, Parametros)
     llenarTablaAsync(Nombre, MetodoWeb, Parametros, true);
 };
 
-$.fn.tabla = function (MetodoWeb, Parametros, Async) {
+$.fn.tabla = function (MetodoWeb, Parametros, Async)
+{
     Nombre = $(this).attr('id');
     llenarTablaAsync(Nombre, MetodoWeb, Parametros, Async);
 };
 
 //JVELASQUEZ - 05/07/2013: La función ejecuta el ajax para llenar la tabla, recibiendo los
 //distintos parámetros de la función sobrecargada TABLA.
-function llenarTablaAsync(Nombre, MetodoWeb, Parametros, Async){
+function llenarTablaAsync(Nombre, MetodoWeb, Parametros, Async)
+{
     var Params = "";
 
     if ($(Parametros).size() > 0)
@@ -353,7 +356,8 @@ function llenarTablaAsync(Nombre, MetodoWeb, Parametros, Async){
             //JVELASQUEZ - 23/09/2013: Se busca el filtro de la tabla y si no está vacío, se filtra la tabla.
             filtros = obtenerFiltros(Nombre);
             var Buscar = "";
-            if (filtros.length > 0) {
+            if (filtros.length > 0)
+            {
                 var arreglo = filtros[0].getElementsByClassName("search-query");
                 Buscar = $(arreglo[0]).val();
                 //$("div.pagination > ul[data-tabla=" + tabla + "] > li.active").removeClass("active");
@@ -428,14 +432,18 @@ function OrdenarFilas(datos, columna, tipo, asc)
                 if (tipo == "string")
                 {
                     //MBARILLAS - 08/10/2013: Se verifica antes para no comparar null
-                    if (b[columna] != null && a[columna] != null) {
+                    if (b[columna] != null && a[columna] != null)
+                    {
                         return a[columna].localeCompare(b[columna]);
                     }
-                    else {
-                        if (b[columna] == null && a[columna] != null) {
+                    else
+                    {
+                        if (b[columna] == null && a[columna] != null)
+                        {
                             return 1;
                         }
-                        if (a[columna] == null && b[columna] != null) {
+                        if (a[columna] == null && b[columna] != null)
+                        {
                             return -1;
                         }
                         return 0;
@@ -456,14 +464,18 @@ function OrdenarFilas(datos, columna, tipo, asc)
                 if (tipo == "string")
                 {
                     //MBARILLAS - 08/10/2013: Se verifica antes para no comparar null
-                    if (a[columna] != null && b[columna] != null) {
+                    if (a[columna] != null && b[columna] != null)
+                    {
                         return b[columna].localeCompare(a[columna]);
                     }
-                    else {
-                        if (b[columna] == null && a[columna] != null) {
+                    else
+                    {
+                        if (b[columna] == null && a[columna] != null)
+                        {
                             return -1;
                         }
-                        if (a[columna] == null && b[columna] != null) {
+                        if (a[columna] == null && b[columna] != null)
+                        {
                             return 1;
                         }
                         return 0;
@@ -694,20 +706,23 @@ function GenerarFilas(Tabla, Datos)
                 var td = $(document.createElement('td'));
 
                 // JVELASQUEZ - 05/07/2013: Se añade la clase a las casillas de la columna
-                if (Oculto != undefined) {
+                if (Oculto != undefined)
+                {
                     td.addClass(Oculto);
                 }
 
 
-                if (Tipo == "icono") {
-                    
+                if (Tipo == "icono")
+                {
+
                     var Formato = $(this).attr("data-formato");
 
                     var i = $(document.createElement('i'));
                     i.addClass("icon-" + Formato);
                     i.css("cursor", "pointer");
                     i.attr("data-toggle", "tooltip");
-                    if (Formato == "edit") {
+                    if (Formato == "edit")
+                    {
                         i.attr("title", "Editar");
                     }
 
@@ -715,7 +730,8 @@ function GenerarFilas(Tabla, Datos)
                     /*JVELASQUEZ - 02/09/2013: Se añade el tipo autonumérico para generar los correlativos en cada fila de la tabla
                       JVELASQUEZ - 03/10/2013: Se corrigió el error en el que el autonumerico se reinicia en cada página de la tabla
                     */
-                } else if (Tipo == "autonumerico") {
+                } else if (Tipo == "autonumerico")
+                {
                     var pa = Number($("ul[data-tabla=" + Tabla + "] > li.active").text());
                     var qa = $("ul[data-tabla=" + Tabla + "]").attr("data-cantidad");
                     td.text($("#" + Tabla + " tr").length + (pa - 1) * qa);
@@ -725,9 +741,10 @@ function GenerarFilas(Tabla, Datos)
                     // Determinar si es boton
                     var Boton = $(this).attr("data-boton");
 
-                    
 
-                    switch (Boton) {
+
+                    switch (Boton)
+                    {
 
                         case "editar":
                             var i = $(document.createElement('i'));
@@ -762,7 +779,7 @@ function GenerarFilas(Tabla, Datos)
                             td.append(button);
                     }
                 }
-               
+
 
                 td.css("text-align", "center");
                 tr.append(td);
@@ -775,7 +792,8 @@ function GenerarFilas(Tabla, Datos)
                 var td = $(document.createElement('td'));
 
                 // JVELASQUEZ - 05/07/2013: Se añade la clase a las casillas de la columna
-                if (Oculto != undefined) {
+                if (Oculto != undefined)
+                {
                     td.addClass(Oculto);
                 }
 
@@ -783,38 +801,61 @@ function GenerarFilas(Tabla, Datos)
                 {
                     // JVELASQUEZ - 20/07/2013: Si el campo viene null, se inserta un string vacío y no la palabra null
                     case "string":
-                        if (fila[Campo] != null) {
+                        if (fila[Campo] != null)
+                        {
                             td.text(fila[Campo]);
-                        } else {
+                        }
+                        else
+                        {
                             td.text("");
                         }
 
                         break;
                     case "int":
-                        var x = Number(fila[Campo]);
-                        var Formato = $(this).attr("data-formato");
+                        // 2013-12-11 - Se verifica si el campo es null, para
+                        // no aplicar el metodo Number que convierte null en 0
 
-                        if (Formato != undefined && Formato != "")
+                        if (fila[Campo] != null)
                         {
-                            td.text(x.formato(Formato));
+                            var x = Number(fila[Campo]);
+                            var Formato = $(this).attr("data-formato");
+
+                            if (Formato != undefined && Formato != "")
+                            {
+                                td.text(x.formato(Formato));
+                            }
+                            else
+                            {
+                                td.text(x);
+                            }
                         }
                         else
                         {
-                            td.text(x);
+                            td.text("");
                         }
 
                         break;
                     case "decimal":
-                        var x = Number(fila[Campo]);
-                        var Formato = $(this).attr("data-formato");
+                        // 2013-12-11 - Se verifica si el campo es null, para
+                        // no aplicar el metodo Number que convierte null en 0
 
-                        if (Formato != undefined && Formato != "")
+                        if (fila[Campo] != null)
                         {
-                            td.text(x.formato(Formato));
+                            var x = Number(fila[Campo]);
+                            var Formato = $(this).attr("data-formato");
+
+                            if (Formato != undefined && Formato != "")
+                            {
+                                td.text(x.formato(Formato));
+                            }
+                            else
+                            {
+                                td.text(x);
+                            }
                         }
                         else
                         {
-                            td.text(x);
+                            td.text("");
                         }
 
                         break;
@@ -822,7 +863,8 @@ function GenerarFilas(Tabla, Datos)
                         /* JVELASQUEZ - 02/09/2013: Se le da formato manualmente a la fecha para que sea mostrada tal y como es recibida.
                            JVELASQUEZ - 03/10/2013: Se le da formato manualmente a la fecha para que sea mostrada tal y como es recibida.
                         */
-                        try{
+                        try
+                        {
                             var arr = fila[Campo].split("T");
                             var re = new RegExp("-", "g"); // Creamos expresión regular para remplazar “-” por “/”
                             var fecha_barra = arr[0].replace(re, "/"); // reemplazamos
@@ -838,7 +880,8 @@ function GenerarFilas(Tabla, Datos)
                             {
                                 td.text(fecha.toLocaleString());
                             }
-                        } catch (ex) {
+                        } catch (ex)
+                        {
                             td.text("");
                         }
 
@@ -872,7 +915,8 @@ function GenerarFilas(Tabla, Datos)
 
                         td.html(checkbox);
 
-                        if (fila[Campo] != false && fila[Campo] != 0 && fila[Campo] != null) {
+                        if (fila[Campo] != false && fila[Campo] != 0 && fila[Campo] != null)
+                        {
                             checkbox.prop("checked", true);
                         }
 
@@ -888,11 +932,13 @@ function GenerarFilas(Tabla, Datos)
                         td.html(img);
 
                         break;
-                    //JVELASQUEZ - 25/07/2013: Se agrego el data-tipo html para insertar html en la tabla.
+                        //JVELASQUEZ - 25/07/2013: Se agrego el data-tipo html para insertar html en la tabla.
                     case "html":
-                        if (fila[Campo] != null) {
+                        if (fila[Campo] != null)
+                        {
                             td.html(fila[Campo]);
-                        } else {
+                        } else
+                        {
                             td.html("");
                         }
 
@@ -1119,11 +1165,14 @@ $("table[data-orden=true] > thead > tr > th").append('<i class="pull-right"></i>
 $("table[data-orden=true] > tbody > tr > td > ").append('<i class="pull-right"></i>');
 
 //JVELASQUEZ - 23/09/2013: Se busca el filtro de la tabla con el nombre recibido.
-function obtenerFiltros(nombre) {
+function obtenerFiltros(nombre)
+{
     var arreglo = document.getElementsByClassName('form-search');
     var matchingElements = [];
-    for (var i = 0; i < arreglo.length; i++) {
-        if (arreglo[i].getAttribute("data-tabla") == nombre) {
+    for (var i = 0; i < arreglo.length; i++)
+    {
+        if (arreglo[i].getAttribute("data-tabla") == nombre)
+        {
             // Element exists with attribute. Add to array.
             matchingElements.push(arreglo[i]);
         }
