@@ -328,7 +328,7 @@ function llenarTablaAsync(Nombre, MetodoWeb, Parametros, Async)
         async: Async,
         success: function (msg)
         {
-            //msg = JSON.parse(msg);
+            msg = JSON.parse(msg.d);
 
             var Fuente = $("#" + Nombre).attr("data-fuente");
 
@@ -819,30 +819,50 @@ function GenerarFilas(Tabla, Datos)
 
                         break;
                     case "int":
-                        var x = Number(fila[Campo]);
-                        var Formato = $(this).attr("data-formato");
+                        // 2013-12-11 - Se verifica si el campo es null, para
+                        // no aplicar el metodo Number que convierte null en 0
 
-                        if (Formato != undefined && Formato != "")
+                        if (fila[Campo] != null)
                         {
-                            td.text(x.formato(Formato));
+                            var x = Number(fila[Campo]);
+                            var Formato = $(this).attr("data-formato");
+
+                            if (Formato != undefined && Formato != "")
+                            {
+                                td.text(x.formato(Formato));
+                            }
+                            else
+                            {
+                                td.text(x);
+                            }
                         }
                         else
                         {
-                            td.text(x);
+                            td.text("");
                         }
 
                         break;
                     case "decimal":
-                        var x = Number(fila[Campo]);
-                        var Formato = $(this).attr("data-formato");
+                        // 2013-12-11 - Se verifica si el campo es null, para
+                        // no aplicar el metodo Number que convierte null en 0
 
-                        if (Formato != undefined && Formato != "")
+                        if (fila[Campo] != null)
                         {
-                            td.text(x.formato(Formato));
+                            var x = Number(fila[Campo]);
+                            var Formato = $(this).attr("data-formato");
+
+                            if (Formato != undefined && Formato != "")
+                            {
+                                td.text(x.formato(Formato));
+                            }
+                            else
+                            {
+                                td.text(x);
+                            }
                         }
                         else
                         {
-                            td.text(x);
+                            td.text("");
                         }
 
                         break;
