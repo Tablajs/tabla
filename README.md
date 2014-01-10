@@ -63,7 +63,7 @@ Ejemplo:
 
 
 Definir el objeto con su respectivo id.
-<hr>
+
 <pre>
 &lt;div class="form-search pull-right" data-tabla="gvBuscar"&gt;
     &lt;input type="text" class="search-query form-control" placeholder="Buscar" /&gt;
